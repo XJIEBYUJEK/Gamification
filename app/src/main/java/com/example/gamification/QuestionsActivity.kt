@@ -33,9 +33,8 @@ class QuestionsActivity : AppCompatActivity() {
 
         dataFromAPI
 
-        val recyclerView = questionsRV
 
-        recyclerView?.addOnItemTouchListener(
+        questionsRV!!.addOnItemTouchListener(
             RecyclerItemClickListener(
                 this,
                 questionsRV,
@@ -43,7 +42,7 @@ class QuestionsActivity : AppCompatActivity() {
                     override fun onItemClick(view: View?, position: Int) {
                         Toast.makeText(
                             applicationContext,
-                            questionsModalArrayList!![position].difficulty, Toast.LENGTH_SHORT
+                            questionsModalArrayList!![position].subject, Toast.LENGTH_SHORT
                         ).show()
                     }
 
@@ -54,6 +53,7 @@ class QuestionsActivity : AppCompatActivity() {
                 })
         )
     }
+
     private val dataFromAPI: Unit
         get() {
 
@@ -73,6 +73,7 @@ class QuestionsActivity : AppCompatActivity() {
                     try {
                         val feedObj = response.getJSONObject("feed")
                         val entryArray = feedObj.getJSONArray("entry")
+                        var listOfSubjects = listOf<String>()
                         for (i in 0 until entryArray.length()) {
                             val entryObj = entryArray.getJSONObject(i)
 
@@ -80,17 +81,19 @@ class QuestionsActivity : AppCompatActivity() {
                                 entryObj.getJSONObject("gsx\$difficulty").getString("\$t")
                             if (difficulty == difficultyFlag){
                                 val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t")
-
-                                questionsModalArrayList!!.add(QuestionsModal(subject, difficulty))
-                                questionsAdapter = QuestionsAdapter(
-                                    questionsModalArrayList!!,
-                                    this@QuestionsActivity
-                                )
-                                questionsRV!!.layoutManager =
-                                    LinearLayoutManager(this@QuestionsActivity)
-                                questionsRV!!.adapter = questionsAdapter
+                                val tempList = listOf(subject)
+                                listOfSubjects = listOfSubjects.union(tempList).toList()
                             }
+
                         }
+                        listOfSubjects.forEach { questionsModalArrayList!!.add(QuestionsModal(it)) }
+                        questionsAdapter = QuestionsAdapter(
+                            questionsModalArrayList!!,
+                            this@QuestionsActivity
+                        )
+                        questionsRV!!.layoutManager =
+                            LinearLayoutManager(this@QuestionsActivity)
+                        questionsRV!!.adapter = questionsAdapter
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
