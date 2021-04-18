@@ -2,7 +2,6 @@ package com.example.gamification
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,10 +18,13 @@ class QuestionsActivity : AppCompatActivity() {
     private var questionsAdapter: QuestionsAdapter? = null
     private var loadingPB: ProgressBar? = null
     private var questionsRV: RecyclerView? = null
+    private var difficultyFlag: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+        val bundle = intent.extras
+        difficultyFlag = bundle!!.getString("difficulty")
 
         questionsModalArrayList = ArrayList()
 
@@ -34,17 +36,22 @@ class QuestionsActivity : AppCompatActivity() {
         val recyclerView = questionsRV
 
         recyclerView?.addOnItemTouchListener(
-            RecyclerItemClickListener(this, questionsRV, object : RecyclerItemClickListener.OnItemClickListener {
-                override fun onItemClick(view: View?, position: Int) {
-                    Toast.makeText(applicationContext,
-                        questionsModalArrayList!![position].difficulty, Toast.LENGTH_SHORT).show()
-                }
+            RecyclerItemClickListener(
+                this,
+                questionsRV,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View?, position: Int) {
+                        Toast.makeText(
+                            applicationContext,
+                            questionsModalArrayList!![position].difficulty, Toast.LENGTH_SHORT
+                        ).show()
+                    }
 
-                override fun onLongItemClick(view: View?, position: Int) {
-                    Toast.makeText(applicationContext, "text2", Toast.LENGTH_SHORT).show()
-                }
+                    override fun onLongItemClick(view: View?, position: Int) {
+                        Toast.makeText(applicationContext, "Hi", Toast.LENGTH_SHORT).show()
+                    }
 
-            })
+                })
         )
     }
     private val dataFromAPI: Unit
@@ -69,18 +76,20 @@ class QuestionsActivity : AppCompatActivity() {
                         for (i in 0 until entryArray.length()) {
                             val entryObj = entryArray.getJSONObject(i)
 
-                            val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t")
                             val difficulty =
                                 entryObj.getJSONObject("gsx\$difficulty").getString("\$t")
-                            questionsModalArrayList!!.add(QuestionsModal(subject, difficulty))
-                            questionsAdapter = QuestionsAdapter(
-                                questionsModalArrayList!!,
-                                this@QuestionsActivity
-                            )
-                            questionsRV!!.layoutManager =
-                                LinearLayoutManager(this@QuestionsActivity)
-                            questionsRV!!.adapter = questionsAdapter
+                            if (difficulty == difficultyFlag){
+                                val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t")
 
+                                questionsModalArrayList!!.add(QuestionsModal(subject, difficulty))
+                                questionsAdapter = QuestionsAdapter(
+                                    questionsModalArrayList!!,
+                                    this@QuestionsActivity
+                                )
+                                questionsRV!!.layoutManager =
+                                    LinearLayoutManager(this@QuestionsActivity)
+                                questionsRV!!.adapter = questionsAdapter
+                            }
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()

@@ -22,9 +22,19 @@ class UpgradesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         easy.setOnClickListener {
-           startActivity(
-                Intent(activity, QuestionsActivity::class.java)
-            )
+            val intent = Intent(activity, QuestionsActivity::class.java)
+            intent.putExtra("difficulty", "easy")
+            startActivity(intent)
+        }
+        medium.setOnClickListener {
+            val intent = Intent(activity, QuestionsActivity::class.java)
+            intent.putExtra("difficulty", "medium")
+            startActivity(intent)
+        }
+        hard.setOnClickListener {
+            val intent = Intent(activity, QuestionsActivity::class.java)
+            intent.putExtra("difficulty", "hard")
+            startActivity(intent)
         }
     }
 }
