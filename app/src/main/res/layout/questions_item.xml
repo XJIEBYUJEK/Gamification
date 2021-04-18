@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Subject"
             android:textColor="@color/black"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
 
     </RelativeLayout>

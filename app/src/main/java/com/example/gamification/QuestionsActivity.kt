@@ -2,6 +2,7 @@ package com.example.gamification
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +12,13 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
-import java.util.ArrayList
+import java.util.*
 
 class QuestionsActivity : AppCompatActivity() {
     private var questionsModalArrayList: ArrayList<QuestionsModal>? = null
     private var questionsAdapter: QuestionsAdapter? = null
-    private var questionsRV: RecyclerView? = null
     private var loadingPB: ProgressBar? = null
+    private var questionsRV: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,22 @@ class QuestionsActivity : AppCompatActivity() {
         loadingPB = findViewById(R.id.idPBLoading)
 
         dataFromAPI
+
+        val recyclerView = questionsRV
+
+        recyclerView?.addOnItemTouchListener(
+            RecyclerItemClickListener(this, questionsRV, object : RecyclerItemClickListener.OnItemClickListener {
+                override fun onItemClick(view: View?, position: Int) {
+                    Toast.makeText(applicationContext,
+                        questionsModalArrayList!![position].difficulty, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onLongItemClick(view: View?, position: Int) {
+                    Toast.makeText(applicationContext, "text2", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+        )
     }
     private val dataFromAPI: Unit
         get() {
@@ -53,9 +70,15 @@ class QuestionsActivity : AppCompatActivity() {
                             val entryObj = entryArray.getJSONObject(i)
 
                             val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t")
-                            questionsModalArrayList!!.add(QuestionsModal(subject))
-                            questionsAdapter = QuestionsAdapter(questionsModalArrayList!!, this@QuestionsActivity)
-                            questionsRV!!.layoutManager = LinearLayoutManager(this@QuestionsActivity)
+                            val difficulty =
+                                entryObj.getJSONObject("gsx\$difficulty").getString("\$t")
+                            questionsModalArrayList!!.add(QuestionsModal(subject, difficulty))
+                            questionsAdapter = QuestionsAdapter(
+                                questionsModalArrayList!!,
+                                this@QuestionsActivity
+                            )
+                            questionsRV!!.layoutManager =
+                                LinearLayoutManager(this@QuestionsActivity)
                             questionsRV!!.adapter = questionsAdapter
 
                         }

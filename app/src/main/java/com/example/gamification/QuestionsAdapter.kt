@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
+
 
 class QuestionsAdapter ( private val questionsModalArrayList: ArrayList<QuestionsModal>, private val context: Context
 ) : RecyclerView.Adapter<QuestionsAdapter.ViewHolder>() {
