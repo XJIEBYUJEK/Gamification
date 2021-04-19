@@ -12,9 +12,11 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import java.util.*
+import kotlin.collections.ArrayList
 
 class QuestionsActivity : AppCompatActivity() {
     private var questionsModalArrayList: ArrayList<QuestionsModal>? = null
+    private var questionDataArrayList: ArrayList<QuestionData>? = null
     private var questionsAdapter: QuestionsAdapter? = null
     private var loadingPB: ProgressBar? = null
     private var questionsRV: RecyclerView? = null
@@ -27,6 +29,7 @@ class QuestionsActivity : AppCompatActivity() {
         difficultyFlag = bundle!!.getString("difficulty")
 
         questionsModalArrayList = ArrayList()
+        questionDataArrayList = ArrayList()
 
         questionsRV = findViewById(R.id.idRVQuestions)
         loadingPB = findViewById(R.id.idPBLoading)
@@ -73,20 +76,29 @@ class QuestionsActivity : AppCompatActivity() {
                     try {
                         val feedObj = response.getJSONObject("feed")
                         val entryArray = feedObj.getJSONArray("entry")
-                        var listOfSubjects = listOf<String>()
+                        //var listOfSubjects = listOf<String>()
+                        val map = mutableMapOf<String, Int>()
                         for (i in 0 until entryArray.length()) {
                             val entryObj = entryArray.getJSONObject(i)
 
                             val difficulty =
-                                entryObj.getJSONObject("gsx\$difficulty").getString("\$t")
+                                entryObj.getJSONObject("gsx\$difficulty").getString("\$t") ?: "null"
                             if (difficulty == difficultyFlag){
-                                val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t")
-                                val tempList = listOf(subject)
-                                listOfSubjects = listOfSubjects.union(tempList).toList()
+                                val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t") ?: "null"
+                                //val tempList = listOf(subject)
+                                //listOfSubjects = listOfSubjects.union(tempList).toList()
+                                map += subject to map.getOrDefault(subject, 0) + 1
+                                val question = entryObj.getJSONObject("gsx\$question").getString("\$t") ?: "null"
+                                val answer = entryObj.getJSONObject("gsx\$answer").getString("\$t") ?: "null"
+                                val answer2 = entryObj.getJSONObject("gsx\$answer2").getString("\$t") ?: "null"
+                                val answer3 = entryObj.getJSONObject("gsx\$answer3").getString("\$t") ?: "null"
+                                val answer4 = entryObj.getJSONObject("gsx\$answer4").getString("\$t") ?: "null"
+                                questionDataArrayList!!.add(QuestionData(subject, difficulty, question, answer, answer2, answer3, answer4))
                             }
 
                         }
-                        listOfSubjects.forEach { questionsModalArrayList!!.add(QuestionsModal(it)) }
+                        //listOfSubjects.forEach { questionsModalArrayList!!.add(QuestionsModal(it)) }
+                        map.forEach { if (it.value >= 3) questionsModalArrayList!!.add(QuestionsModal(it.key)) }
                         questionsAdapter = QuestionsAdapter(
                             questionsModalArrayList!!,
                             this@QuestionsActivity
