@@ -1,6 +1,35 @@
 <resources>
-    <string name="app_name">Gamification</string>
+    <string name="app_name">HSE Button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="buy">Buy</string>
+    <string name="upgrade1Text">
+        <font size="20">Представь что это\n Snickers в автомате</font> \n
+        +1000 очков \n
+        Стоимость: 10 Вышкоинов
+    </string>
+    <string name="upgrade2Text">
+        <font size="20">Выгоденей только комплекс</font> \n
+        +15000 очков \n
+        Стоимость: 100 Вышкоинов
+    </string>
+    <string name="upgrade3Text">
+        <font size="20">Как насчет скидочки?</font> \n
+        x2 к Вышкоинам и очкам \n
+        Стоимость: 400 Вышкоинов
+    </string>
+    <string name="upgrade4Text">
+        <font size="20">Поднимаемся по рейтингу</font> \n
+        x8 к Вышкоинам и очкам \n
+        Стоимость: 1150 Вышкоинов
+    </string>
+    <string name="upgrade5Text">
+        <font size="20">Тот самый бюджет с которого ты не слетишь</font> \n
+        x32 к Вышкоинам и очкам \n
+        Стоимость: 10000 Вышкоинов
+    </string>
+    <string name="upgrades">Магазин</string>
+    <string name="game">Кнопка</string>
+    <string name="tests">Задания</string>
 </resources>

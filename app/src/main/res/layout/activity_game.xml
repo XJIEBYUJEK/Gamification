@@ -28,22 +28,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/upgradesButton"
-            android:text="Upgrades"
+            android:text="@string/upgrades"
             android:layout_weight="1"
+            android:background="@color/hse"
             />
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/gameButton"
-            android:text="Game"
+            android:text="@string/game"
             android:layout_weight="1"
+            android:background="@color/hse"
             />
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/testsButton"
-            android:text="Tests"
+            android:text="@string/tests"
             android:layout_weight="1"
+            android:background="@color/hse"
             />
 
     </LinearLayout>

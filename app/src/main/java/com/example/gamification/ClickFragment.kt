@@ -2,7 +2,6 @@ package com.example.gamification
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,15 +24,16 @@ class ClickFragment : Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
         var clickCounter = BigDecimal(sharedPref?.getString("clickerScore", "0"))
-        var coins = BigDecimal(sharedPref?.getString("coins", "0"))
+        val coins = BigDecimal(sharedPref?.getString("coins", "0"))
+        val coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
 
 
         clickerScore.text = "$clickCounter"
 
-        coinsTV.text = "Вышкоины: ${coins}"
+        coinsTV.text = "Вышкоины: $coins"
 
         clickerButton.setOnClickListener {
-            clickCounter += BigDecimal("1")
+            clickCounter += BigDecimal("1") * coefficient
             clickerScore.text = "$clickCounter"
 
             with (sharedPref?.edit()){

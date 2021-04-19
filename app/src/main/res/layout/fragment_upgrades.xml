@@ -11,8 +11,126 @@
         android:layout_height="wrap_content"
         tools:text="0"
         android:id="@+id/coinsTV"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+    <!-- upgrade1 -->
+    <LinearLayout
+        android:layout_marginTop="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/upgrade1LL"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="@string/upgrade1Text"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/upgrade1B"
+            android:text="@string/buy"
+            android:layout_marginEnd="10dp"
+
+
+
+            />
+    </LinearLayout>
+    <!-- upgrade2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/upgrade2LL"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/upgrade1LL">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="@string/upgrade2Text"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/upgrade2B"
+            android:text="@string/buy"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
+    <!-- upgrade3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/upgrade3LL"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/upgrade2LL">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="@string/upgrade3Text"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/upgrade3B"
+            android:text="@string/buy"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
+    <!-- upgrade4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/upgrade4LL"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/upgrade3LL">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="@string/upgrade4Text"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/upgrade4B"
+            android:text="@string/buy"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
+    <!-- upgrade5 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/upgrade5LL"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/upgrade4LL">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="@string/upgrade5Text"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/upgrade5B"
+            android:text="@string/buy"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

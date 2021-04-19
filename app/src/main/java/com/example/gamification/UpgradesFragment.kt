@@ -21,14 +21,13 @@ class UpgradesFragment: Fragment() {
 
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         var coins = BigDecimal(sharedPref?.getString("coins", "0"))
-        coins -= BigDecimal("2")
+        var coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
+
         with (sharedPref?.edit()){
             this?.putString("coins", coins.toString())
+            this?.putString("coef", coefficient.toString())
             this?.apply()
         }
-        coinsTV.text = coins.toString()
-
-
-
+        coinsTV.text = "Вышкоины: $coins"
     }
 }

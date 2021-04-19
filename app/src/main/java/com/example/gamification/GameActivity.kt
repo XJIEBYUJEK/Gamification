@@ -16,11 +16,12 @@ class GameActivity : AppCompatActivity() {
         val difficultyFlag = bundle!!.getString("difficulty")
         val wrongAnswers = bundle.getInt("wrongAns")
         var coins = BigDecimal(sharedPref?.getString("coins", "0"))
+        val coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
 
         when(difficultyFlag){
             "easy" -> when(wrongAnswers){
                 0 -> {
-                    coins += BigDecimal("1")
+                    coins += BigDecimal("1") * coefficient
                 }
                 1 -> {
                     coins += BigDecimal("0")
@@ -34,7 +35,7 @@ class GameActivity : AppCompatActivity() {
             }
             "medium" -> when(wrongAnswers){
                 0 -> {
-                    coins += BigDecimal("2")
+                    coins += BigDecimal("2") * coefficient
                 }
                 1 -> {
                     coins += BigDecimal("0")
@@ -48,7 +49,7 @@ class GameActivity : AppCompatActivity() {
             }
             "hard" -> when(wrongAnswers){
                 0 -> {
-                    coins += BigDecimal("3")
+                    coins += BigDecimal("3") * coefficient
                 }
                 1 -> {
                     coins += BigDecimal("0")
