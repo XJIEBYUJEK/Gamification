@@ -1,5 +1,6 @@
 package com.example.gamification
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -43,10 +44,32 @@ class QuestionsActivity : AppCompatActivity() {
                 questionsRV,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-                        Toast.makeText(
+
+                        val chosenSubjectQuestionsArray = questionDataArrayList!!.filter { questionsModalArrayList!![position].subject == it.subject }
+                        val threeRandomQuestions = chosenSubjectQuestionsArray.shuffled().take(3)
+                        val questionArrayList = arrayListOf<String>()
+                        val answerArrayList = arrayListOf<String>()
+                        val answer2ArrayList = arrayListOf<String>()
+                        val answer3ArrayList = arrayListOf<String>()
+                        val answer4ArrayList = arrayListOf<String>()
+                        threeRandomQuestions.forEach {
+                            questionArrayList.add(it.question)
+                            answerArrayList.add(it.answer)
+                            answer2ArrayList.add(it.answer2)
+                            answer3ArrayList.add(it.answer3)
+                            answer4ArrayList.add(it.answer4)
+                        }
+                        /*Toast.makeText(
                             applicationContext,
-                            questionsModalArrayList!![position].subject, Toast.LENGTH_SHORT
-                        ).show()
+                            chosenSubjectQuestionsArray.shuffled().take(3).toString(), Toast.LENGTH_SHORT
+                        ).show()*/
+                        val intent = Intent(this@QuestionsActivity, QuestionActivity::class.java)
+                        intent.putExtra("question", questionArrayList)
+                        intent.putExtra("answer", answerArrayList)
+                        intent.putExtra("answer2", answer2ArrayList)
+                        intent.putExtra("answer3", answer3ArrayList)
+                        intent.putExtra("answer4", answer4ArrayList)
+                        startActivity(intent)
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
@@ -85,8 +108,6 @@ class QuestionsActivity : AppCompatActivity() {
                                 entryObj.getJSONObject("gsx\$difficulty").getString("\$t") ?: "null"
                             if (difficulty == difficultyFlag){
                                 val subject = entryObj.getJSONObject("gsx\$subject").getString("\$t") ?: "null"
-                                //val tempList = listOf(subject)
-                                //listOfSubjects = listOfSubjects.union(tempList).toList()
                                 map += subject to map.getOrDefault(subject, 0) + 1
                                 val question = entryObj.getJSONObject("gsx\$question").getString("\$t") ?: "null"
                                 val answer = entryObj.getJSONObject("gsx\$answer").getString("\$t") ?: "null"
@@ -97,7 +118,6 @@ class QuestionsActivity : AppCompatActivity() {
                             }
 
                         }
-                        //listOfSubjects.forEach { questionsModalArrayList!!.add(QuestionsModal(it)) }
                         map.forEach { if (it.value >= 3) questionsModalArrayList!!.add(QuestionsModal(it.key)) }
                         questionsAdapter = QuestionsAdapter(
                             questionsModalArrayList!!,
