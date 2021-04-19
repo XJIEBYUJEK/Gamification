@@ -9,9 +9,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startActivity(
-                Intent(this, LoginActivity::class.java)
-        )
+        val intent = Intent(this, GameActivity::class.java)
+        intent.putExtra("wrongAns", -1 )
+        intent.putExtra("difficulty", "null")
+        startActivity(intent)
         finish()
     }
 }

@@ -69,6 +69,7 @@ class QuestionsActivity : AppCompatActivity() {
                         intent.putExtra("answer2", answer2ArrayList)
                         intent.putExtra("answer3", answer3ArrayList)
                         intent.putExtra("answer4", answer4ArrayList)
+                        intent.putExtra("difficulty", difficultyFlag)
                         startActivity(intent)
                     }
 

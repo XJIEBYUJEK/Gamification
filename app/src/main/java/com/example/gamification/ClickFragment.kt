@@ -22,12 +22,15 @@ class ClickFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
 
         var clickCounter = BigDecimal(sharedPref?.getString("clickerScore", "0"))
+        var coins = BigDecimal(sharedPref?.getString("coins", "0"))
+
 
         clickerScore.text = "$clickCounter"
+
+        coinsTV.text = "Вышкоины: ${coins}"
 
         clickerButton.setOnClickListener {
             clickCounter += BigDecimal("1")

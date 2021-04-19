@@ -13,9 +13,10 @@ class LoginActivity : AppCompatActivity() {
 
         val loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener {
-            startActivity(
-                Intent(this, GameActivity::class.java)
-            )
+            val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra("wrongAns", -1 )
+            intent.putExtra("difficulty", "null")
+            startActivity(intent)
             finish()
         }
 

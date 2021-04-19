@@ -12,6 +12,7 @@ class QuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
         val bundle = intent.extras
+        val difficultyFlag = bundle!!.getString("difficulty")
         val questionArrayList = bundle!!.getStringArrayList("question")
         val answerArrayList = bundle.getStringArrayList("answer")
         val answer2ArrayList = bundle.getStringArrayList("answer2")
@@ -51,7 +52,7 @@ class QuestionActivity : AppCompatActivity() {
             else{
                 Toast.makeText(
                     applicationContext,
-                    "Неерно :(", Toast.LENGTH_SHORT
+                    "Неверно :(", Toast.LENGTH_SHORT
                 ).show()
                 wrongAnswers += 1
             }
@@ -64,9 +65,10 @@ class QuestionActivity : AppCompatActivity() {
                 applicationContext,
                 "Вы совершили $wrongAnswers ошибок", Toast.LENGTH_SHORT
             ).show()
-            startActivity(
-                Intent(this, GameActivity::class.java)
-            )
+            val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra("wrongAns", wrongAnswers)
+            intent.putExtra("difficulty", difficultyFlag)
+            startActivity(intent)
             finish()
         }
 
