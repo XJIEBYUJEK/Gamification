@@ -31,10 +31,10 @@ class QuestionActivity : AppCompatActivity() {
                     answer2ArrayList?.get(numberOfQuestion) ?: "null",
                     answer3ArrayList?.get(numberOfQuestion) ?: "null",
                     answer4ArrayList?.get(numberOfQuestion) ?: "null")
-            answer1.text = questionAnswersList[(0 + rightAnswerFlag) % 4]
-            answer2.text = questionAnswersList[(1 + rightAnswerFlag) % 4]
-            answer3.text = questionAnswersList[(2 + rightAnswerFlag) % 4]
-            answer4.text = questionAnswersList[(3 + rightAnswerFlag) % 4]
+            answerTV1.text = questionAnswersList[(0 + rightAnswerFlag) % 4]
+            answerTV2.text = questionAnswersList[(1 + rightAnswerFlag) % 4]
+            answerTV3.text = questionAnswersList[(2 + rightAnswerFlag) % 4]
+            answerTV4.text = questionAnswersList[(3 + rightAnswerFlag) % 4]
             return rightAnswerFlag
         }
 
@@ -74,7 +74,7 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
-        answer1.setOnClickListener {
+        answerB1.setOnClickListener {
             buttonPressed(0)
             if (numberOfQuestion < 3){
                 rightAnswerFlag = beforeButtonPressed(numberOfQuestion)
@@ -83,7 +83,7 @@ class QuestionActivity : AppCompatActivity() {
                 results()
             }
         }
-        answer2.setOnClickListener {
+        answerB2.setOnClickListener {
             buttonPressed(1)
             if (numberOfQuestion < 3){
                 rightAnswerFlag = beforeButtonPressed(numberOfQuestion)
@@ -92,7 +92,7 @@ class QuestionActivity : AppCompatActivity() {
                 results()
             }
         }
-        answer3.setOnClickListener {
+        answerB3.setOnClickListener {
             buttonPressed(2)
             if (numberOfQuestion < 3){
                 rightAnswerFlag = beforeButtonPressed(numberOfQuestion)
@@ -101,7 +101,7 @@ class QuestionActivity : AppCompatActivity() {
                 results()
             }
         }
-        answer4.setOnClickListener {
+        answerB4.setOnClickListener {
             buttonPressed(3)
             if (numberOfQuestion < 3){
                 rightAnswerFlag = beforeButtonPressed(numberOfQuestion)

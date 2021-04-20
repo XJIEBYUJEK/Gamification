@@ -25,8 +25,8 @@
         Стоимость: 1150 Вышкоинов
     </string>
     <string name="upgrade5Text">
-        <font size="20">Тот самый бюджет с которого ты не слетишь</font> \n
-        x32 к Вышкоинам и очкам \n
+        <font size="20">Тот самый бюджет с\n которого ты не слетишь</font>\n
+        x32 к Вышкоинам и очкам\n
         Стоимость: 10000 Вышкоинов
     </string>
     <string name="upgrades">Магазин</string>
@@ -34,5 +34,9 @@
     <string name="tests">Задания</string>
     <string name="activated"> <font size="5">Куплено</font></string>
     <string name="blocked"> <font size="5">Закрыто</font></string>
-    <string name="coins"> Вышкоины:</string>
+    <string name="coins"> Вышкоины: </string>
+    <string name="easy"> Легкая</string>
+    <string name="medium"> Средняя</string>
+    <string name="hard"> Тяжелая</string>
+    <string name="difficulty"> Выберите уровень сложности:</string>
 </resources>
