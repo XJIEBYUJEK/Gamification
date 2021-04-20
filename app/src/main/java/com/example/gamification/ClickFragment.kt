@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_click.*
 import java.math.BigDecimal
 
@@ -28,9 +30,11 @@ class ClickFragment : Fragment() {
         val coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
 
 
+
+
         clickerScore.text = "$clickCounter"
 
-        coinsTV.text = "Вышкоины: $coins"
+        coinsTV.text = "$coins"
 
         clickerButton.setOnClickListener {
             clickCounter += BigDecimal("1") * coefficient
@@ -41,7 +45,6 @@ class ClickFragment : Fragment() {
                 this?.apply()
             }
         }
-
 
     }
 

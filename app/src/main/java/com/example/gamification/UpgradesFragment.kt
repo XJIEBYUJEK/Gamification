@@ -35,6 +35,7 @@ class UpgradesFragment: Fragment() {
         }
 
         fun enoughCoinsCheck(){
+            coinsTV.text = "$coins"
 
             when {
                 coins >= BigDecimal("10000") -> {
@@ -84,40 +85,36 @@ class UpgradesFragment: Fragment() {
                 }
             }
 
+
         }
         enoughCoinsCheck()
 
         upgrade1B.setOnClickListener {
             coins -= BigDecimal("10")
-            coinsTV.text = "Вышкоины: $coins"
             clickCounter += BigDecimal("1000") * coefficient
             saveVar()
             enoughCoinsCheck()
         }
         upgrade2B.setOnClickListener {
             coins -= BigDecimal("100")
-            coinsTV.text = "Вышкоины: $coins"
             clickCounter += BigDecimal("15000") * coefficient
             saveVar()
             enoughCoinsCheck()
         }
         upgrade3B.setOnClickListener {
             coins -= BigDecimal("400")
-            coinsTV.text = "Вышкоины: $coins"
             coefficient = BigDecimal("2")
             saveVar()
             enoughCoinsCheck()
         }
         upgrade4B.setOnClickListener {
             coins -= BigDecimal("1150")
-            coinsTV.text = "Вышкоины: $coins"
             coefficient = BigDecimal("8")
             saveVar()
             enoughCoinsCheck()
         }
         upgrade5B.setOnClickListener {
             coins -= BigDecimal("10000")
-            coinsTV.text = "Вышкоины: $coins"
             coefficient = BigDecimal("32")
             saveVar()
             enoughCoinsCheck()
@@ -125,6 +122,6 @@ class UpgradesFragment: Fragment() {
 
 
 
-        coinsTV.text = "Вышкоины: $coins"
+
     }
 }

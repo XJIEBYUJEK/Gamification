@@ -10,7 +10,7 @@
         Стоимость: 10 Вышкоинов
     </string>
     <string name="upgrade2Text">
-        <font size="20">Выгоденей только комплекс</font> \n
+        <font size="20">Выгодней только комплекс</font> \n
         +15000 очков \n
         Стоимость: 100 Вышкоинов
     </string>
@@ -34,4 +34,5 @@
     <string name="tests">Задания</string>
     <string name="activated"> <font size="5">Куплено</font></string>
     <string name="blocked"> <font size="5">Закрыто</font></string>
+    <string name="coins"> Вышкоины:</string>
 </resources>
