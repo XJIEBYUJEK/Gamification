@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_game.*
 import java.math.BigDecimal
 
 class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_game)
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
         val bundle = intent.extras
@@ -62,6 +64,7 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         }
+        if (coins < BigDecimal("0")) coins = BigDecimal("0")
 
         with (sharedPref?.edit()){
             this?.putString("coins", coins.toString())

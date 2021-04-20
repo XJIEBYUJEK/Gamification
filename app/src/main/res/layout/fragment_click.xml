@@ -37,13 +37,21 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/logo"
         />
+    <TextView
+        android:layout_width="352dp"
+        android:layout_height="360dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@id/clickerButton"
+        app:layout_constraintTop_toTopOf="@id/clickerButton"
+
+        />
 
     <ImageButton
         android:id="@+id/clickerButton"
         android:layout_width="352dp"
         android:layout_height="360dp"
         android:background="@color/white"
-        android:src="@drawable/button"
+        android:src="@drawable/button_removebg_preview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"

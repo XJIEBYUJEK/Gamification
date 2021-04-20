@@ -52,7 +52,7 @@ class QuestionActivity : AppCompatActivity() {
             else{
                 Toast.makeText(
                     applicationContext,
-                    "Неверно :(", Toast.LENGTH_SHORT
+                    "Неверно", Toast.LENGTH_SHORT
                 ).show()
                 wrongAnswers += 1
             }
@@ -63,7 +63,7 @@ class QuestionActivity : AppCompatActivity() {
         fun results(){
             Toast.makeText(
                 applicationContext,
-                "Вы совершили $wrongAnswers ошибок", Toast.LENGTH_SHORT
+                "Количество ошибок: $wrongAnswers", Toast.LENGTH_SHORT
             ).show()
             val intent = Intent(this, GameActivity::class.java)
             intent.putExtra("wrongAns", wrongAnswers)

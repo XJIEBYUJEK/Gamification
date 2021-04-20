@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_upgrades.*
 import java.math.BigDecimal
@@ -19,7 +20,7 @@ class UpgradesFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         var coins = BigDecimal(sharedPref?.getString("coins", "0"))
         var coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
@@ -46,22 +47,39 @@ class UpgradesFragment: Fragment() {
                     upgrade1B.isEnabled = true
                 }
                 coins >= BigDecimal("1150") -> {
+                    upgrade5B.isEnabled = false
                     upgrade4B.isEnabled = true
                     upgrade3B.isEnabled = true
                     upgrade2B.isEnabled = true
                     upgrade1B.isEnabled = true
                 }
                 coins >= BigDecimal("400") -> {
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
                     upgrade3B.isEnabled = true
                     upgrade2B.isEnabled = true
                     upgrade1B.isEnabled = true
                 }
                 coins >= BigDecimal("100") -> {
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
+                    upgrade3B.isEnabled = false
                     upgrade2B.isEnabled = true
                     upgrade1B.isEnabled = true
                 }
                 coins >= BigDecimal("10") -> {
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
+                    upgrade3B.isEnabled = false
+                    upgrade2B.isEnabled = false
                     upgrade1B.isEnabled = true
+                }
+                else -> {
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
+                    upgrade3B.isEnabled = false
+                    upgrade2B.isEnabled = false
+                    upgrade1B.isEnabled = false
                 }
             }
             when(coefficient){
