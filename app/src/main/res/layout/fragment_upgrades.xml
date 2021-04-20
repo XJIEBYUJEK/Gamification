@@ -35,9 +35,8 @@
             android:id="@+id/upgrade1B"
             android:text="@string/buy"
             android:layout_marginEnd="10dp"
-
-
-
+            android:enabled="false"
+            android:textSize="10sp"
             />
     </LinearLayout>
     <!-- upgrade2 -->
@@ -61,6 +60,8 @@
             android:id="@+id/upgrade2B"
             android:text="@string/buy"
             android:layout_marginEnd="10dp"
+            android:enabled="false"
+            android:textSize="10sp"
             />
     </LinearLayout>
     <!-- upgrade3 -->
@@ -84,6 +85,8 @@
             android:id="@+id/upgrade3B"
             android:text="@string/buy"
             android:layout_marginEnd="10dp"
+            android:enabled="false"
+            android:textSize="10sp"
             />
     </LinearLayout>
     <!-- upgrade4 -->
@@ -107,6 +110,9 @@
             android:id="@+id/upgrade4B"
             android:text="@string/buy"
             android:layout_marginEnd="10dp"
+            android:enabled="false"
+            android:textSize="10sp"
+
             />
     </LinearLayout>
     <!-- upgrade5 -->
@@ -130,6 +136,8 @@
             android:id="@+id/upgrade5B"
             android:text="@string/buy"
             android:layout_marginEnd="10dp"
+            android:enabled="false"
+            android:textSize="10sp"
             />
     </LinearLayout>
 

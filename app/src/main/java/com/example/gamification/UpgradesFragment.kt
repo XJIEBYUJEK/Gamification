@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_upgrades.*
 import java.math.BigDecimal
@@ -22,12 +23,108 @@ class UpgradesFragment: Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         var coins = BigDecimal(sharedPref?.getString("coins", "0"))
         var coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
+        var clickCounter = BigDecimal(sharedPref?.getString("clickerScore", "0"))
 
-        with (sharedPref?.edit()){
-            this?.putString("coins", coins.toString())
-            this?.putString("coef", coefficient.toString())
-            this?.apply()
+        fun saveVar(){
+            with (sharedPref?.edit()){
+                this?.putString("coins", coins.toString())
+                this?.putString("coef", coefficient.toString())
+                this?.putString("clickerScore", clickCounter.toString())
+                this?.apply()
+            }
         }
+
+        fun enoughCoinsCheck(){
+
+            when {
+                coins >= BigDecimal("10000") -> {
+                    upgrade5B.isEnabled = true
+                    upgrade4B.isEnabled = true
+                    upgrade3B.isEnabled = true
+                    upgrade2B.isEnabled = true
+                    upgrade1B.isEnabled = true
+                }
+                coins >= BigDecimal("1150") -> {
+                    upgrade4B.isEnabled = true
+                    upgrade3B.isEnabled = true
+                    upgrade2B.isEnabled = true
+                    upgrade1B.isEnabled = true
+                }
+                coins >= BigDecimal("400") -> {
+                    upgrade3B.isEnabled = true
+                    upgrade2B.isEnabled = true
+                    upgrade1B.isEnabled = true
+                }
+                coins >= BigDecimal("100") -> {
+                    upgrade2B.isEnabled = true
+                    upgrade1B.isEnabled = true
+                }
+                coins >= BigDecimal("10") -> {
+                    upgrade1B.isEnabled = true
+                }
+            }
+            when(coefficient){
+                BigDecimal("1") -> {
+                    upgrade4B.text = "${getString(R.string.blocked)}"
+                    upgrade5B.text = "${getString(R.string.blocked)}"
+                }
+                BigDecimal("2") -> {
+                    upgrade3B.text = "${getString(R.string.activated)}"
+                    upgrade5B.text = "${getString(R.string.blocked)}"
+                }
+                BigDecimal("8") -> {
+                    upgrade3B.text = "${getString(R.string.activated)}"
+                    upgrade4B.text = "${getString(R.string.activated)}"
+                }
+                BigDecimal("32") -> {
+                    upgrade3B.text = "${getString(R.string.activated)}"
+                    upgrade4B.text = "${getString(R.string.activated)}"
+                    upgrade5B.text = "${getString(R.string.activated)}"
+
+                }
+            }
+
+        }
+        enoughCoinsCheck()
+
+        upgrade1B.setOnClickListener {
+            coins -= BigDecimal("10")
+            coinsTV.text = "Вышкоины: $coins"
+            clickCounter += BigDecimal("1000") * coefficient
+            saveVar()
+            enoughCoinsCheck()
+        }
+        upgrade2B.setOnClickListener {
+            coins -= BigDecimal("100")
+            coinsTV.text = "Вышкоины: $coins"
+            clickCounter += BigDecimal("15000") * coefficient
+            saveVar()
+            enoughCoinsCheck()
+        }
+        upgrade3B.setOnClickListener {
+            coins -= BigDecimal("400")
+            coinsTV.text = "Вышкоины: $coins"
+            coefficient = BigDecimal("2")
+            saveVar()
+            enoughCoinsCheck()
+        }
+        upgrade4B.setOnClickListener {
+            coins -= BigDecimal("1150")
+            coinsTV.text = "Вышкоины: $coins"
+            coefficient = BigDecimal("8")
+            saveVar()
+            enoughCoinsCheck()
+        }
+        upgrade5B.setOnClickListener {
+            coins -= BigDecimal("10000")
+            coinsTV.text = "Вышкоины: $coins"
+            coefficient = BigDecimal("32")
+            saveVar()
+            enoughCoinsCheck()
+        }
+
+
+
         coinsTV.text = "Вышкоины: $coins"
     }
 }
