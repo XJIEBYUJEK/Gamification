@@ -1,9 +1,9 @@
 package com.example.gamification
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlin.random.Random
 
@@ -27,10 +27,10 @@ class QuestionActivity : AppCompatActivity() {
             val rightAnswerFlag = Random.nextInt(4)
             val questionAnswersList =
                 listOf(
-                    answerArrayList?.get(numberOfQuestion) ?: "null",
-                    answer2ArrayList?.get(numberOfQuestion) ?: "null",
-                    answer3ArrayList?.get(numberOfQuestion) ?: "null",
-                    answer4ArrayList?.get(numberOfQuestion) ?: "null")
+                        answerArrayList?.get(numberOfQuestion) ?: "null",
+                        answer2ArrayList?.get(numberOfQuestion) ?: "null",
+                        answer3ArrayList?.get(numberOfQuestion) ?: "null",
+                        answer4ArrayList?.get(numberOfQuestion) ?: "null")
             answerTV1.text = questionAnswersList[(0 + rightAnswerFlag) % 4]
             answerTV2.text = questionAnswersList[(1 + rightAnswerFlag) % 4]
             answerTV3.text = questionAnswersList[(2 + rightAnswerFlag) % 4]
@@ -45,14 +45,14 @@ class QuestionActivity : AppCompatActivity() {
 
             if(0 == (numberOfButton + rightAnswerFlag) % 4){
                 Toast.makeText(
-                    applicationContext,
-                    "Верно!", Toast.LENGTH_SHORT
+                        applicationContext,
+                        "Верно!", Toast.LENGTH_SHORT
                 ).show()
             }
             else{
                 Toast.makeText(
-                    applicationContext,
-                    "Неверно", Toast.LENGTH_SHORT
+                        applicationContext,
+                        "Неверно", Toast.LENGTH_SHORT
                 ).show()
                 wrongAnswers += 1
             }
@@ -62,8 +62,8 @@ class QuestionActivity : AppCompatActivity() {
 
         fun results(){
             Toast.makeText(
-                applicationContext,
-                "Количество ошибок: $wrongAnswers", Toast.LENGTH_SHORT
+                    applicationContext,
+                    "Количество ошибок: $wrongAnswers", Toast.LENGTH_SHORT
             ).show()
             val intent = Intent(this, GameActivity::class.java)
             intent.putExtra("wrongAns", wrongAnswers)
@@ -110,14 +110,8 @@ class QuestionActivity : AppCompatActivity() {
                 results()
             }
         }
-
-
-
-
-
-
     }
-
-
-
+    override fun onBackPressed() {
+        // do nothing
+    }
 }

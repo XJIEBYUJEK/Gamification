@@ -32,8 +32,6 @@ class ClickFragment : Fragment() {
         val coefficient = BigDecimal(sharedPref?.getString("coef", "1"))
 
 
-
-
         clickerScore.text = "$clickCounter"
 
         coinsTV.text = "$coins"

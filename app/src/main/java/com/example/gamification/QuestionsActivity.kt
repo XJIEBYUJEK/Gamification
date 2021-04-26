@@ -1,5 +1,6 @@
 package com.example.gamification
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
+import java.math.BigDecimal
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,6 +40,7 @@ class QuestionsActivity : AppCompatActivity() {
         loadingPB = findViewById(R.id.idPBLoading)
 
         dataFromAPI
+
 
 
         questionsRV!!.addOnItemTouchListener(
@@ -76,7 +79,7 @@ class QuestionsActivity : AppCompatActivity() {
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
-                        Toast.makeText(applicationContext, "Hi", Toast.LENGTH_SHORT).show()
+
                     }
 
                 })

@@ -86,19 +86,30 @@ class UpgradesFragment: Fragment() {
                 BigDecimal("1") -> {
                     upgrade4B.text = "${getString(R.string.blocked)}"
                     upgrade5B.text = "${getString(R.string.blocked)}"
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
                 }
                 BigDecimal("2") -> {
                     upgrade3B.text = "${getString(R.string.activated)}"
+                    upgrade4B.text = "${getString(R.string.buy)}"
                     upgrade5B.text = "${getString(R.string.blocked)}"
+                    upgrade3B.isEnabled = false
+                    upgrade5B.isEnabled = false
                 }
                 BigDecimal("8") -> {
                     upgrade3B.text = "${getString(R.string.activated)}"
                     upgrade4B.text = "${getString(R.string.activated)}"
+                    upgrade5B.text = "${getString(R.string.buy)}"
+                    upgrade4B.isEnabled = false
+                    upgrade3B.isEnabled = false
                 }
                 BigDecimal("32") -> {
                     upgrade3B.text = "${getString(R.string.activated)}"
                     upgrade4B.text = "${getString(R.string.activated)}"
                     upgrade5B.text = "${getString(R.string.activated)}"
+                    upgrade5B.isEnabled = false
+                    upgrade4B.isEnabled = false
+                    upgrade3B.isEnabled = false
 
                 }
             }
