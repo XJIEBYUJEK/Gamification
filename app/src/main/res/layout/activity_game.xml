@@ -31,6 +31,7 @@
             android:text="@string/upgrades"
             android:layout_weight="1"
             android:background="@color/hse"
+            android:layout_marginHorizontal="1dp"
             />
         <Button
             android:layout_width="0dp"
@@ -39,6 +40,7 @@
             android:text="@string/game"
             android:layout_weight="1"
             android:background="@color/hse"
+            android:layout_marginHorizontal="1dp"
             />
         <Button
             android:layout_width="0dp"
@@ -47,6 +49,7 @@
             android:text="@string/tests"
             android:layout_weight="1"
             android:background="@color/hse"
+            android:layout_marginHorizontal="1dp"
             />
 
     </LinearLayout>
